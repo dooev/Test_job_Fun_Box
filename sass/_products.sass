@@ -11,8 +11,11 @@
 		width: 100%
 		justify-content: space-around
 		align-items: center
+	&__item
+		z-index: 1
 	&__background
 		position: relative
+		padding-bottom: 4px
 		padding-top: 20px
 		height: 480px
 		width: 320px
@@ -40,20 +43,42 @@
 			font-size: 14px
 			margin-top: 15px
 		&_weight
+			padding-top: 10px
 			position: absolute
 			align-self: flex-end
-			bottom: 24px
-			right: 40px
+			bottom: 15px
+			right: 15px
 			line-height: 1
 			text-align: center
 			color: #fff
-			&_05
-				right: 22px
-				bottom: 22px
+			z-index: 3
+			width: 80px
+			height: 80px
+			background: #1698d9
+			border-radius: 50px
+			// &_05
+			// 	right: 22px
+			// 	bottom: 22px
 			&_title
 				font-size: 42px
 			&_subtitle
-				font-size: 22px
+				font-size: 21px
 		&_down
 			font-size: 14px
 			letter-spacing: -.5px
+	&__img
+		&_product
+			margin-left: 4px
+			position: absolute
+			align-self: flex-end
+			overflow: hidden
+			width: 280px
+			height: 270px
+			left: 0px
+			border-radius: 9px
+			z-index: 2
+		&_position
+			position: absolute
+			left: -30px
+
+		
