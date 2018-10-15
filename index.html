@@ -13,14 +13,14 @@
 </head>
 
 <body>
-	
+
     <section class="products">
         <header>
             <span class="section-title">Ты сегодня покормил кота?</span>
         </header>
         <section class="products__wrapper">
             <div class="products__item">
-                <div class="products__background">
+                <div class="products__background products__background_default" id="itemFua">
                     <div class="products__text">
                         <span>Сказочное заморское яство</span>
                         <span class="products__text_title">Нямушка</span>
@@ -31,7 +31,7 @@
                         </div>
 
                     </div>
-                    <div class="products__text_weight products__text_weight_05">
+                    <div id="circleFua" class="products__text_weight products__text_weight_05 products__text_weight_default">
                         <span class="products__text_weight_title">0,5</span>
                         <br>
                         <span class="products__text_weight_subtitle">кг</span>
@@ -42,10 +42,10 @@
                     		</div>
 	                 </div>                    
                 </div>
-                <div class="products__text_down">Чего сидишь? Порадуй котэ, <a href="#">купи.</a></div>
+                <div class="products__text_down">Чего сидишь? Порадуй котэ, <a  id="buyFua" href="#" class="buy">купи.</a></div>
             </div>
             <div class="products__item">
-                <div class="products__background">
+                <div class="products__background products__background_selected" id="itemFish">
                     <div class="products__text">
                         <span>Сказочное заморское яство</span>
                         <span class="products__text_title">Нямушка</span>
@@ -56,7 +56,7 @@
                         </div>
 
                     </div>
-                    <div class="products__text_weight">
+                    <div id="circleFish" class="products__text_weight products__text_weight_selected">
                         <span class="products__text_weight_title">2</span>
                         <br>
                         <span class="products__text_weight_subtitle">кг</span>
@@ -67,10 +67,10 @@
                     		</div>
                     </div> 
                 </div>
-                <div class="products__text_down">Головы щучьи с чесноком  да свежайшая сёмгушка.</div>
+                <div class="products__text_down">Чего сидишь? Порадуй котэ, <a  id="buyFish" href="#" class="buy" >купи.</a></div>
             </div>
             <div class="products__item">
-                <div class="products__background">
+                <div class="products__background products__background_disabled" id="itemChickan">
                     <div class="products__text">
                         <span>Сказочное заморское яство</span>
                         <span class="products__text_title">Нямушка</span>
@@ -82,7 +82,7 @@
                         </div>
 
                     </div>
-                    <div class="products__text_weight">
+                    <div id="circleChickan" class="products__text_weight products__text_weight_disabled">
                         <span class="products__text_weight_title">5</span>
                         <br>
                         <span class="products__text_weight_subtitle">кг</span>
@@ -93,10 +93,10 @@
 								</div>
 							</div>    
                 </div>
-                <div class="products__text_down">Печалька, с курой закончился.</div>
+                <div class="products__text_down products__text_down_disabled">Чего сидишь? Порадуй котэ, <a id="buyChickan" href="#" class="buy">купи.</a></div>
             </div>
         </section>
     </section>
 </body>
-
+<script src="js/common.js"></script>
 </html>
