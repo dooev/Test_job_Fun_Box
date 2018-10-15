@@ -11,37 +11,53 @@ window.addEventListener('DOMContentLoaded', function() {
 		 circleFua = document.querySelector('#circleFua'),
 		 circleFish = document.querySelector('#circleFish'),
 		 circleChickan = document.querySelector('#circleChickan'),
-		 productsNameFua = "с фуа-гра",
-		 productsNameFish = "с рыбой",
-		 productsNameChicken = "с курой";
+		 textDownFua = document.querySelector('#textDownFua'),
+		 textDownFish = document.querySelector('#textDownFish'),
+		 textDownChickan = document.querySelector('#textDownChickan');
+
 
 // select START
 	products__wrapper.addEventListener('click', function(event) {
 		let target = event.target;
 		while (target != this) {
 			switch(target.id) {
-				case "itemFua":
-					select (itemFua, circleFua);
-				break;
-			
-				case "buyFua":
-					select (itemFua, circleFua);
+				case "itemFua" || "buyFua":
+					if (!itemFua.classList.contains('products__background_disabled')) {
+						select (itemFua, circleFua);
+						textDownFua.classList.toggle('products__text_down_default');
+						textDownFua.classList.toggle('products__text_down_selected');
+						downText (target.id);
+					} 
+					// else {
+					// 	textDownFua.classList.add('products__text_down_disabled');
+					// 	textDownFua.innerHTML = "Печалька, с фуа-гра закончился.";
+					// }
 				break;
 				
-				case "itemFish":
-					select (itemFish, circleFish);
+				case "itemFish" || "buyFish":
+					if (!itemFish.classList.contains('products__background_disabled')) {
+						select (itemFish, circleFish);
+						textDownFish.classList.toggle('products__text_down_default');
+						textDownFish.classList.toggle('products__text_down_selected');
+						downText (target.id);
+					}
+					// else {
+					// 	textDownFish.classList.add('products__text_down_disabled');
+					// 	textDownFish.innerHTML = "Печалька, с рыбкой закончился.";
+					// }
 				break;
 
-				case "buyFish":
-					select (itemFish, circleFish);
-				break;
-
-				case "itemChickan":
-					select (itemChickan, circleChickan);
-				break;
-
-				case "buyChickan":
-					select (itemChickan, circleChickan);
+				case "itemChickan" || "buyChickan":
+					if (!itemChickan.classList.contains('products__background_disabled')) {
+						select (itemChickan, circleChickan);
+						textDownChickan.classList.toggle('products__text_down_default');
+						textDownChickan.classList.toggle('products__text_down_selected');
+						downText (target.id);
+					}
+					// else {
+					// 	textDownChickan.classList.add('products__text_down_disabled');
+					// 	textDownChickan.innerHTML = "Печалька, с курой закончился.";
+					// }
 				break;
 			}
 			target = target.parentNode;
@@ -49,14 +65,45 @@ window.addEventListener('DOMContentLoaded', function() {
 	});
 
 	function select (item, circle){
-		if (item.classList.contains('products__background') && !item.classList.contains('products__background_disabled') ) {
+		if (item.classList.contains('products__background') ) {
 			item.classList.toggle('products__background_default');
 			item.classList.toggle('products__background_selected');
 			circle.classList.toggle('products__text_weight_default');
 			circle.classList.toggle('products__text_weight_selected');
 		}
 	}
+	// изменение текста под карточкой
+	function downText (textItem){
+		switch (textItem) {
+			case "itemFua":
+				if(textDownFua.classList.contains('products__text_down_default') ) {
+					textDownFua.innerHTML = "Чего сидишь? Порадуй котэ, <a id='buyFua' href='#' class='buy' >купи.</a>";
+				}
+				if (textDownFua.classList.contains('products__text_down_selected') ) {
+					textDownFua.innerHTML = "Печень утки разварная с артишоками.";
+				}
+			break;
 
+			case "itemFish":
+				if(textDownFish.classList.contains('products__text_down_default') ) {
+					textDownFish.innerHTML = "Чего сидишь? Порадуй котэ, <a id='buyFish' href='#' class='buy' >купи.</a>";
+				}
+				if (textDownFish.classList.contains('products__text_down_selected') ) {
+					textDownFish.innerHTML = "Головы щучьи с чесноком да свежайшая сёмгушка.";
+				}
+			break;
+
+			case "itemChickan":
+				if(textDownChickan.classList.contains('products__text_down_default') ) {
+					textDownChickan.innerHTML = "Чего сидишь? Порадуй котэ, <a id='buyChickan' href='#' class='buy' >купи.</a>";
+				}
+				if (textDownChickan.classList.contains('products__text_down_selected') ) {
+					textDownChickan.innerHTML = "Филе из цыплят с трюфелями в бульоне.";
+				}
+			break;
+			
+		}
+	}
 // select END
 
 
