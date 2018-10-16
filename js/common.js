@@ -2,7 +2,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
 	let products__wrapper = document.querySelector('.products__wrapper'),
 		 // products__item = document.querySelectorAll('.products__background'),
-		 // buy = document.querySelector('.buy'),
+		 links = products__wrapper.querySelectorAll('a'),
 		 // products_weight_circle = document.querySelectorAll('.products__text_weight'),
 		 products__text_down = document.querySelectorAll('.products__text_down'),
 		 itemFua = document.querySelector('#itemFua'),
@@ -19,41 +19,47 @@ window.addEventListener('DOMContentLoaded', function() {
 // select START
 	products__wrapper.addEventListener('click', function(event) {
 		let target = event.target;
-		while (target != this) {
+		event.preventDefault(); // отмена перехода по ссылке
+		while (target != this && target != null) {
 			switch(target.id) {
-				case "itemFua" || "buyFua":
+				case "itemFua":
+				case "buyFua":
 					if (!itemFua.classList.contains('products__background_disabled')) {
 						select (itemFua, circleFua);
 						textDownFua.classList.toggle('products__text_down_default');
 						textDownFua.classList.toggle('products__text_down_selected');
-						downText (target.id);
-					} 
+						downText ("itemFua");
+
 					// else {
 					// 	textDownFua.classList.add('products__text_down_disabled');
 					// 	textDownFua.innerHTML = "Печалька, с фуа-гра закончился.";
-					// }
+					}
 				break;
 				
-				case "itemFish" || "buyFish":
+				case "itemFish":
+				case "buyFish":
 					if (!itemFish.classList.contains('products__background_disabled')) {
 						select (itemFish, circleFish);
 						textDownFish.classList.toggle('products__text_down_default');
 						textDownFish.classList.toggle('products__text_down_selected');
-						downText (target.id);
+						downText ("itemFish");
 					}
+
 					// else {
 					// 	textDownFish.classList.add('products__text_down_disabled');
 					// 	textDownFish.innerHTML = "Печалька, с рыбкой закончился.";
 					// }
 				break;
 
-				case "itemChickan" || "buyChickan":
+				case "itemChickan":
+				case "buyChickan":
 					if (!itemChickan.classList.contains('products__background_disabled')) {
 						select (itemChickan, circleChickan);
 						textDownChickan.classList.toggle('products__text_down_default');
 						textDownChickan.classList.toggle('products__text_down_selected');
-						downText (target.id);
+						downText ("itemChickan");
 					}
+
 					// else {
 					// 	textDownChickan.classList.add('products__text_down_disabled');
 					// 	textDownChickan.innerHTML = "Печалька, с курой закончился.";
@@ -101,10 +107,15 @@ window.addEventListener('DOMContentLoaded', function() {
 					textDownChickan.innerHTML = "Филе из цыплят с трюфелями в бульоне.";
 				}
 			break;
-			
 		}
 	}
 // select END
+
+// отмена перехода по ссылке
+
+
+
+
 
 
 });
