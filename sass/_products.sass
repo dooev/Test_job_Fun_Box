@@ -22,6 +22,8 @@
 		width: 320px
 		display: flex
 		justify-content: center
+		cursor: pointer
+
 	&__text
 		margin-left: -12px
 		display: flex
@@ -90,6 +92,7 @@
 	&__background
 		&_default
 			background: url(../img/products/products__item_Default.png) 0 0
+
 		&_defaultHover
 			background: url(../img/products/products__item_DefaultHover.png) 0 0
 		&_selected
@@ -97,6 +100,7 @@
 		&_selectedHover
 			background: url(../img/products/products__item_SelectedHover.png) 0 0
 		&_disabled
+			cursor: default;
 			background: url(../img/products/products__item_Disabled.png) 0 0
 	&__text
 		&_weight
@@ -113,4 +117,3 @@
 		&_down
 			&_disabled
 				color: $disabled-text
-				

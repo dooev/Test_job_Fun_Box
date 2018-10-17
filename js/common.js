@@ -60,11 +60,18 @@ window.addEventListener('DOMContentLoaded', function() {
 	});
 
 	function select (item, circle){
-		if (item.classList.contains('products__background') ) {
-			item.classList.toggle('products__background_default');
-			item.classList.toggle('products__background_selected');
-			circle.classList.toggle('products__text_weight_default');
-			circle.classList.toggle('products__text_weight_selected');
+		if (item.classList.contains('products__background_defaultHover') ) {
+			item.classList.remove('products__background_defaultHover');
+			item.classList.add('products__background_selectedHover');
+			circle.classList.remove('products__text_weight_default');
+			circle.classList.add('products__text_weight_selectedHover');
+		} else {
+			item.classList.add('products__background_defaultHover');
+			item.classList.remove('products__background_selectedHover');
+			circle.classList.add('products__text_weight_default');
+			circle.classList.remove('products__text_weight_selectedHover');
+			item.classList.remove('products__background_selectedHover');
+
 		}
 	}
 	// изменение текста под карточкой
@@ -128,8 +135,112 @@ window.addEventListener('DOMContentLoaded', function() {
 	disabled(itemChickan);
 // disabled END
 
+// hover START
+	/* Задане: Состояние наведения применяется к ВЫБРАННОЙ упаковке не сразу, 
+	а после того, как курсор ушел с нее после первоначального выбора.
+	К упаковке в состоянии default состояние наведения применяется как обычно.*/
+	 
+	let whereNow = null; // где сейчас курсор
 
+	// событие при наведении мыши
+	products__wrapper.onmouseover = function(event) {
+		let target = event.target;
 
+	  	while (target != this) {
+	  		if (whereNow == target) return; // если курсор на той же карточке, игнорируем
+	    	switch(target.id) {
+				case "itemFua":
+				if (target.classList.contains('products__background_selectedHover') ) {
+					hoverSelectedOff(itemFua, circleFua)
+				} else {
+					hoverChanges(itemFua, circleFua);
+					whereNow = target;
+				}
+				break;
+				
+				case "itemFish":
+					hoverChanges(itemFish, circleFish);
+					whereNow = target;
+				break;
 
+				case "itemChickan":
+					hoverChanges(itemChickan, circleChickan);
+					whereNow = target;
+				break;
+			}
+		  target = target.parentNode;
+		}
+	};
+
+	// событие при уходе мыши
+	products__wrapper.onmouseout = function(event) {
+		if (!whereNow) return;
+
+		let relatedTarget = event.relatedTarget;
+		if (relatedTarget) {
+			while (relatedTarget){
+				if (relatedTarget == whereNow) return;
+				relatedTarget = relatedTarget.parentNode;
+			}
+		}
+		switch(whereNow.id) {
+			case "itemFua":
+				hoverChanges(itemFua, circleFua);
+			break;
+			
+			case "itemFish":
+				hoverChanges(itemFish, circleFish);
+			break;
+
+			case "itemChickan":
+				hoverChanges(itemChickan, circleChickan);
+			break;
+		}
+		whereNow = null;
+	};
+
+	// фильтр состояний, вызов необходимого порядка действий
+	function hoverChanges (item, circle) { 
+		if (item.classList.contains('products__background_default') ) {
+			hoverDefaultOn (item, circle);
+			return;
+		}
+		if (item.classList.contains('products__background_defaultHover') ) {
+			hoverDefaultOff (item, circle);
+		} 
+		if (item.classList.contains('products__background_selected') ) {
+			hoverSelectedOn (item, circle);
+			return;
+		}
+		if (item.classList.contains('products__background_selectedHover') ) {
+			hoverSelectedOff (item, circle);
+		}
+	}
+	
+	function hoverDefaultOn (item, circle) {
+		item.classList.remove('products__background_default');
+		item.classList.add('products__background_defaultHover');
+		circle.classList.remove('products__text_weight_default');
+		circle.classList.add('products__text_weight_defaultHover');
+	}
+	function hoverSelectedOn (item, circle) {
+		item.classList.remove('products__background_selected');
+		item.classList.add('products__background_selectedHover');
+		circle.classList.remove('products__text_weight_selected');
+		circle.classList.add('products__text_weight_selectedHover');
+	}
+		function hoverDefaultOff (item, circle) {
+		item.classList.add('products__background_default');
+		item.classList.remove('products__background_defaultHover');
+		circle.classList.add('products__text_weight_default');
+		circle.classList.remove('products__text_weight_defaultHover');
+	}
+	function hoverSelectedOff (item, circle) {
+		item.classList.add('products__background_selected');
+		item.classList.remove('products__background_selectedHover');
+		circle.classList.add('products__text_weight_selected');
+		circle.classList.remove('products__text_weight_selectedHover');
+	}
+// hover END
 
 });
