@@ -60,16 +60,20 @@ window.addEventListener('DOMContentLoaded', function() {
 	});
 
 	function select (item, circle){
-		if (item.classList.contains('products__background_defaultHover') ) {
+		if (item.classList.contains('products__background_defaultHover') || item.classList.contains('products__background_default') ) {
 			item.classList.remove('products__background_defaultHover');
+			item.classList.remove('products__background_default');
 			item.classList.add('products__background_selectedHover');
 			circle.classList.remove('products__text_weight_default');
+			circle.classList.remove('products__text_weight_defaultHover');
 			circle.classList.add('products__text_weight_selectedHover');
-		} else {
+		} else  {
 			item.classList.add('products__background_defaultHover');
 			item.classList.remove('products__background_selectedHover');
-			circle.classList.add('products__text_weight_default');
+			item.classList.remove('products__background_selected');
+			circle.classList.add('products__text_weight_defaultHover');
 			circle.classList.remove('products__text_weight_selectedHover');
+			circle.classList.remove('products__text_weight_selected');
 			item.classList.remove('products__background_selectedHover');
 
 		}
@@ -139,7 +143,7 @@ window.addEventListener('DOMContentLoaded', function() {
 	/* Задане: Состояние наведения применяется к ВЫБРАННОЙ упаковке не сразу, 
 	а после того, как курсор ушел с нее после первоначального выбора.
 	К упаковке в состоянии default состояние наведения применяется как обычно.*/
-	 
+
 	let whereNow = null; // где сейчас курсор
 
 	// событие при наведении мыши
