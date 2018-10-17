@@ -1,16 +1,22 @@
 window.addEventListener('DOMContentLoaded', function() {
 
 	let products__wrapper = document.querySelector('.products__wrapper'),
-		 // products__item = document.querySelectorAll('.products__background'),
+		 products__itemS = document.querySelectorAll('.products__background'),
 		 links = products__wrapper.querySelectorAll('a'),
+		 catS = products__wrapper.querySelectorAll('img'),
+		 products__textS = document.querySelectorAll('.products__text'),
+		 products__textS_titleS  = document.querySelectorAll('.products__text_title'),
+		 products__textS_subtitleS  = document.querySelectorAll('.products__text_subtitle'),
 		 // products_weight_circle = document.querySelectorAll('.products__text_weight'),
 		 products__text_down = document.querySelectorAll('.products__text_down'),
 		 itemFua = document.querySelector('#itemFua'),
 		 itemFish = document.querySelector('#itemFish'),
 		 itemChickan = document.querySelector('#itemChickan'),
+		 circleS = document.querySelectorAll('.products__text_weight'),
 		 circleFua = document.querySelector('#circleFua'),
 		 circleFish = document.querySelector('#circleFish'),
 		 circleChickan = document.querySelector('#circleChickan'),
+		 textSDown = document.querySelectorAll('.products__text_down'),
 		 textDownFua = document.querySelector('#textDownFua'),
 		 textDownFish = document.querySelector('#textDownFish'),
 		 textDownChickan = document.querySelector('#textDownChickan');
@@ -21,50 +27,33 @@ window.addEventListener('DOMContentLoaded', function() {
 		let target = event.target;
 		event.preventDefault(); // отмена перехода по ссылке
 		while (target != this && target != null) {
-			switch(target.id) {
-				case "itemFua":
-				case "buyFua":
-					if (!itemFua.classList.contains('products__background_disabled')) {
+			if (!target.classList.contains('products__background_disabled')) {
+				switch(target.id) {
+					case "itemFua":
+					case "buyFua":
 						select (itemFua, circleFua);
 						textDownFua.classList.toggle('products__text_down_default');
 						textDownFua.classList.toggle('products__text_down_selected');
 						downText ("itemFua");
-
-					// else {
-					// 	textDownFua.classList.add('products__text_down_disabled');
-					// 	textDownFua.innerHTML = "Печалька, с фуа-гра закончился.";
-					}
-				break;
-				
-				case "itemFish":
-				case "buyFish":
-					if (!itemFish.classList.contains('products__background_disabled')) {
+					break;
+					
+					case "itemFish":
+					case "buyFish":
 						select (itemFish, circleFish);
 						textDownFish.classList.toggle('products__text_down_default');
 						textDownFish.classList.toggle('products__text_down_selected');
 						downText ("itemFish");
-					}
+					break;
 
-					// else {
-					// 	textDownFish.classList.add('products__text_down_disabled');
-					// 	textDownFish.innerHTML = "Печалька, с рыбкой закончился.";
-					// }
-				break;
-
-				case "itemChickan":
-				case "buyChickan":
-					if (!itemChickan.classList.contains('products__background_disabled')) {
+					case "itemChickan":
+					case "buyChickan":
 						select (itemChickan, circleChickan);
 						textDownChickan.classList.toggle('products__text_down_default');
 						textDownChickan.classList.toggle('products__text_down_selected');
 						downText ("itemChickan");
-					}
 
-					// else {
-					// 	textDownChickan.classList.add('products__text_down_disabled');
-					// 	textDownChickan.innerHTML = "Печалька, с курой закончился.";
-					// }
-				break;
+					break;
+				}
 			}
 			target = target.parentNode;
 		}
@@ -111,8 +100,33 @@ window.addEventListener('DOMContentLoaded', function() {
 	}
 // select END
 
-// отмена перехода по ссылке
-
+// disabled START
+	function disabled (item) {
+		item.classList.add('products__background_disabled');
+		for (let i = 0; i < products__itemS.length; i++) {
+			if (products__itemS[i].classList.contains('products__background_disabled') ) {
+				products__textS[i].style.color = "#b3b3b3";
+				products__textS_titleS[i].style.color = "#b3b3b3";
+				products__textS_subtitleS[i].style.color = "#b3b3b3";
+				circleS[i].classList.add('products__text_weight_disabled');
+				circleS[i].classList.remove('products__text_weight_default');
+				circleS[i].classList.remove('products__text_weight_selected');
+				catS[i].setAttribute('src', 'img/products/catDisabled.png');
+				if (i === 0) {
+					textDownFua.classList.add('products__text_down_disabled');
+					textDownFua.innerHTML = "Печалька, с фуа-гра закончился.";
+				} else if (i === 1) {
+					textDownFish.classList.add('products__text_down_disabled');
+					textDownFish.innerHTML = "Печалька, с рыбкой закончился.";
+				} else if (i === 2) {
+					textDownChickan.classList.add('products__text_down_disabled');
+					textDownChickan.innerHTML = "Печалька, с курой закончился.";
+				}
+			}
+		}
+	}
+	disabled(itemChickan);
+// disabled END
 
 
 
