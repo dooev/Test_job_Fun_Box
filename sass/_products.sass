@@ -1,5 +1,5 @@
-
 .products
+	height: 100vh // для IE
 	min-height: 100vh
 	width: 100%
 	display: flex
@@ -20,12 +20,11 @@
 		padding-top: 20px
 		height: 480px
 		width: 320px
-		display: flex
-		justify-content: center
+		display: block
 		cursor: pointer
 
 	&__text
-		margin-left: -12px
+		margin-left: 50px
 		display: flex
 		flex-direction: column
 		color: #666666
@@ -76,16 +75,17 @@
 		&_product
 			margin-left: 4px
 			position: absolute
-			align-self: flex-end
 			overflow: hidden
 			width: 280px
 			height: 270px
 			left: 0px
+			bottom: 4px
 			border-radius: 9px
 			z-index: 2
 		&_position
 			position: absolute
 			left: -30px
+			bottom: -95px
 
 //стили для состояний
 .products
